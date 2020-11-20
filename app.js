@@ -24,12 +24,12 @@ app.use('/wiki', wikiRoute);
 
 app.use('/users', usersRoute);
 
+app.use((req,res,next) => {
+  res.status(404).send('Sorry, you have reached no page. Error 404');
+});
+
 async function seed(){
-
-  await db.sync({force:true});
-  // await User.sync();
-  // await Page.sync();
-
+  await db.sync();
   const PORT = 3000;
   app.listen(PORT);
 }
